@@ -1,7 +1,2 @@
-FROM ubuntu 
-RUN apt update 
-RUN apt install –y apache2 
-RUN apt install –y apache2-utils 
-RUN apt clean 
-EXPOSE 80
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+FROM nginx:stable-alpine3.17-slim
+COPY index.html /usr/share/nginx/html/
