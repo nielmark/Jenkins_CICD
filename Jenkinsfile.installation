@@ -1,0 +1,16 @@
+echo Ir0nM@n | sudo -S sudo yum install -y httpd
+echo Ir0nM@n | sudo -S sed -i 's/^Listen 80$/Listen 8080/g' /etc/httpd/conf/httpd.conf
+echo Ir0nM@n | sudo -S systemctl restart httpd
+echo Ir0nM@n | sudo -S systemctl enable httpd
+ 
+
+echo Am3ric@ | sudo -S sudo yum install -y httpd
+echo Am3ric@ | sudo -S sed -i 's/^Listen 80$/Listen 8080/g' /etc/httpd/conf/httpd.conf
+echo Am3ric@ | sudo -S systemctl restart httpd
+echo Am3ric@ | sudo -S systemctl enable httpd
+ 
+
+echo BigGr33n | sudo -S sudo yum install -y httpd
+echo BigGr33n | sudo -S sed -i 's/^Listen 80$/Listen 8080/g' /etc/httpd/conf/httpd.conf
+echo BigGr33n | sudo -S systemctl restart httpd
+echo BigGr33n | sudo -S systemctl enable httpd
