@@ -1,0 +1,33 @@
+pipeline {
+    agent { label 'stapp01' }
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Clone the repository
+                    git 'http://git.stratos.xfusioncorp.com/sarah/web.git'
+                    sh 'pwd'
+ 
+                    sh 'ls'
+                    // Build the Docker image
+                    sh 'docker build -t stregi01.stratos.xfusioncorp.com:5000/node-app:latest .'
+                    // Push the Docker image to the registry
+                    sh 'docker push stregi01.stratos.xfusioncorp.com:5000/node-app:latest'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    def containerExists = sh(script: 'docker ps -q -f name=node-app', returnStdout: true).trim()
+                    if (containerExists) {
+                        sh 'docker stop node-app || true'
+                        sh 'docker rm node-app'
+                    }
+                    // Run the Docker container
+                    sh 'docker run -d -p 8080:80 --name node-app stregi01.stratos.xfusioncorp.com:5000/node-app:latest'
+                }
+            }
+        }
+    }
+}
